@@ -62,7 +62,12 @@ public class FrmProducto {
                 "Reporte General",
                 "Precio menores a 20",
                 "Por pais",
-                "Agrupado por pais y ordenado por precio, de mayor a menor"
+                "Agrupado por pais y ordenado por precio, de mayor a menor",
+                "Precio menores a 100",
+                "Existencia menor a 30 unidades",
+                "Precio entre 200 y 400",
+                "Ordenar de mayor a menor",
+                "Ordenar de menor a mayor"
         };
         // Agregar las opciones al comboBox en un bucle
         for (String opcion : opcionesReportes) {
@@ -194,8 +199,8 @@ public class FrmProducto {
                     boolean agrupar=false;
                     switch (reportip) {
                         case 0: {
-                            condi= new ServiceProducto().obtenerTodosLosProductos();
-                            new PdfReport().generateProductReport(condi,"C:\\Reportes en PDF\\reporte.pdf",agrupar);
+                            condi = new ServiceProducto().obtenerTodosLosProductos();
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar);
 
                             //Mostrar un mensaje de que se genero el reporte con el Jpanel
                             JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
@@ -203,29 +208,59 @@ public class FrmProducto {
                         }
                         case 1: {
                             condi = new ServiceProducto().obtenerGenericos("existencia<20");
-                            new PdfReport().generateProductReport(condi,"C:\\Reportes en PDF\\reporte.pdf",agrupar);
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar);
 
                             //Mostrar un mensaje de que se genero el reporte con el Jpanel
                             JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
                             break;
                         }
-                        case 2:{
+                        case 2: {
                             String paiselegido = comboBoxOrigen.getSelectedItem().toString();
-                            if (paiselegido.isEmpty()){
+                            if (paiselegido.isEmpty()) {
                                 JOptionPane.showMessageDialog(null, "Porfavor selccionar un pais");
                                 return;
                             }
-                            condi = new ServiceProducto().obtenerGenericos("origen='"+paiselegido+"'");
-                            new PdfReport().generateProductReport(condi,"C:\\Reportes en PDF\\reporte.pdf",agrupar);
+                            condi = new ServiceProducto().obtenerGenericos("origen='" + paiselegido + "'");
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar);
 
                             //Mostrar un mensaje de que se genero el reporte con el Jpanel
                             JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
                             break;
                         }
                         case 3: {
-                            agrupar=true;
+                            agrupar = true;
                             condi = new ServiceProducto().obtenerTodosLosProductos();
                             new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar); // Agrupado
+                            JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
+                            break;
+                        }
+                        case 4: {
+                            condi = new ServiceProducto().obtenerGenericos("precio<100");
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar);
+                            JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
+                            break;
+                        }
+                        case 5: {
+                            condi = new ServiceProducto().obtenerGenericos("existencia<30");
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar);
+                            JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
+                            break;
+                        }
+                        case 6: {
+                            condi = new ServiceProducto().obtenerGenericos("precio>=200 AND precio<=400");
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar);
+                            JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
+                            break;
+                        }
+                        case 7: {
+                            condi = new ServiceProducto().obtenerGenericos("1 ORDER BY precio DESC");
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar);
+                            JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
+                            break;
+                        }
+                        case 8: {
+                            condi = new ServiceProducto().obtenerGenericos("1 ORDER BY precio ASC");
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar);
                             JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
                             break;
                         }
