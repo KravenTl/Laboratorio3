@@ -24,12 +24,12 @@ public class FrmProducto {
     private JLabel lblOrigen;
     private JComboBox comboBoxOrigen;
     private JComboBox comboBoxReportes;
-    private JLabel lblTipoReporte;
     private JButton buttonCrearReporte;
     private JButton buttonBuscar;
     private JButton buttonInsertar;
     private JButton buttonEliminar;
     private JButton buttonActualizar;
+    private JLabel lblTipoReport;
     private ServiceProducto serviceproducto;
     private DaoProducto daoProducto;
 

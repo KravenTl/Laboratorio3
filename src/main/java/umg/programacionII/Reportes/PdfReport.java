@@ -32,7 +32,7 @@ public class PdfReport {
     }
 
     private void addTitle(Document document) throws DocumentException {
-        Paragraph title = new Paragraph("Reporte de Productos", TITLE_FONT); // Actualizado a Productos
+        Paragraph title = new Paragraph("Yourgen Kraven Thommel Arévalo 0905-23-14003", TITLE_FONT); // Actualizado a Productos
         title.setAlignment(Element.ALIGN_CENTER);
         document.add(title);
         document.add(Chunk.NEWLINE);
