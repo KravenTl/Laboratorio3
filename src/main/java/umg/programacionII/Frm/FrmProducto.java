@@ -190,18 +190,20 @@ public class FrmProducto {
             public void actionPerformed(ActionEvent e) {
                 try {
                     int reportip= comboBoxReportes.getSelectedIndex();
+                    List<ModelProducto> condi;
+                    boolean agrupar=false;
                     switch (reportip) {
                         case 0: {
-                            List<ModelProducto> prodigio = new ServiceProducto().obtenerTodosLosProductos();
-                            new PdfReport().generateProductReport(prodigio,"C:\\Reportes en PDF\\reporte.pdf");
+                            condi= new ServiceProducto().obtenerTodosLosProductos();
+                            new PdfReport().generateProductReport(condi,"C:\\Reportes en PDF\\reporte.pdf",agrupar);
 
                             //Mostrar un mensaje de que se genero el reporte con el Jpanel
                             JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
                             break;
                         }
                         case 1: {
-                            List<ModelProducto> condi = new ServiceProducto().obtenerGenericos("existencia<20");
-                            new PdfReport().generateProductReport(condi,"C:\\Reportes en PDF\\reporte.pdf");
+                            condi = new ServiceProducto().obtenerGenericos("existencia<20");
+                            new PdfReport().generateProductReport(condi,"C:\\Reportes en PDF\\reporte.pdf",agrupar);
 
                             //Mostrar un mensaje de que se genero el reporte con el Jpanel
                             JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
@@ -213,10 +215,17 @@ public class FrmProducto {
                                 JOptionPane.showMessageDialog(null, "Porfavor selccionar un pais");
                                 return;
                             }
-                            List<ModelProducto> condi = new ServiceProducto().obtenerGenericos("origen='"+paiselegido+"'");
-                            new PdfReport().generateProductReport(condi,"C:\\Reportes en PDF\\reporte.pdf");
+                            condi = new ServiceProducto().obtenerGenericos("origen='"+paiselegido+"'");
+                            new PdfReport().generateProductReport(condi,"C:\\Reportes en PDF\\reporte.pdf",agrupar);
 
                             //Mostrar un mensaje de que se genero el reporte con el Jpanel
+                            JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
+                            break;
+                        }
+                        case 3: {
+                            agrupar=true;
+                            condi = new ServiceProducto().obtenerTodosLosProductos();
+                            new PdfReport().generateProductReport(condi, "C:\\Reportes en PDF\\reporte.pdf", agrupar); // Agrupado
                             JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF");
                             break;
                         }

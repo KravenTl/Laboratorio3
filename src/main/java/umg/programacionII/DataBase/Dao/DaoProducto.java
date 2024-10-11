@@ -79,7 +79,7 @@ public class DaoProducto {
 
     public List<ModelProducto> obtenerTodosLosProductos() throws Exception {
         Connection connection = Conexion.getConnection();
-        String query = "SELECT * FROM tb_producto ORDER BY origen";
+        String query = "SELECT * FROM tb_producto ORDER BY id_producto";
 
         PreparedStatement ps = connection.prepareStatement(query);
         ResultSet rs = ps.executeQuery();

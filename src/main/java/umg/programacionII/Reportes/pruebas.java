@@ -10,10 +10,10 @@ public class pruebas {
     public static void main(String[] args) {
         try {
             // Obtener productos cuyo precio esté entre 200 y 400
-            List<ModelProducto> productos = new ServiceProducto().obtenerGenericos("precio");
+            List<ModelProducto> productos = new ServiceProducto().obtenerTodosLosProductos();
 
             // Generar el reporte PDF
-            new PdfReport().generateProductReport(productos, "C:\\Reportes en PDF\\reporte.pdf");
+            new PdfReport().generateProductReport(productos, "C:\\Reportes en PDF\\reporte.pdf",false);
 
             // Mostrar un mensaje de que se generó el reporte
             JOptionPane.showMessageDialog(null, "Reporte generado en C:\\Reportes en PDF\\reporte.pdf");
