@@ -124,4 +124,30 @@ public class DaoProducto {
         connection.close();
         return productos;
     }
+
+    public List<ModelProducto> productosagrupados() throws Exception {
+        Connection connection = Conexion.getConnection();
+        String query = "SELECT * FROM tb_producto ORDER BY precio DESC";
+
+        PreparedStatement ps = connection.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        List<ModelProducto> productos = new ArrayList<>();
+
+        while (rs.next()) {
+            ModelProducto producto = new ModelProducto();
+            producto.setId_producto(rs.getInt("id_producto"));
+            producto.setDescripcion(rs.getString("descripcion"));
+            producto.setOrigen(rs.getString("origen"));
+            producto.setPrecio(rs.getDouble("precio")); // Cambiado a getDouble para el precio
+            producto.setExistencia(rs.getInt("existencia"));
+            productos.add(producto);
+        }
+
+        rs.close(); // Cerrar ResultSet
+        ps.close(); // Cerrar el PreparedStatement
+        connection.close();
+        return productos;
+    }
+
+
 }

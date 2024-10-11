@@ -15,7 +15,8 @@ public class ModelProducto {
         this.existencia = existencia;
     }
 
-    public ModelProducto() {}
+    public ModelProducto() {
+    }
 
     // Getters y Setters
     public int getId_producto() {

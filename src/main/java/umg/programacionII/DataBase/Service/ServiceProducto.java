@@ -36,4 +36,8 @@ public class ServiceProducto {
     public List<ModelProducto> obtenerGenericos(String condicion) throws Exception {
         return daoProducto.obtenerGenericos(condicion);
     }
+
+    public List<ModelProducto> productosagrupados() throws Exception {
+        return daoProducto.productosagrupados();
+    }
 }
